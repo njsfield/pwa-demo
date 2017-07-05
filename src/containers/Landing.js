@@ -9,7 +9,7 @@ const Landing = ({credentials, results, offline}) => {
     return (
       <div className="landing">
         <h1>Hello</h1>
-        <a href="http://localhost:9000/login">External Login</a>
+        <a href="/login">Click to login</a>
       </div>
     );
   }

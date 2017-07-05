@@ -25,7 +25,6 @@ const send_ = (res, dir, file) =>
   res.sendFile(path.join(__dirname, dir, file));
 
 const sendApp   = (res) => send_(res, "build", "index.html");
-const sendLogin = (res) => send_(res, "/", "login.html");
 
 
 
@@ -34,37 +33,27 @@ const sendLogin = (res) => send_(res, "/", "login.html");
  Requests 
 ********/
 
-// Login
-app.get('/login', function (req, res) {
-  sendLogin(res)
-});
-
+// Post to login
 app.post('/login', function (req, res) {
   const { user, password } = req.body;
   // Dummy Check For Now
   if (user && password) {
-    // Send apiKey
-    res.redirect(`/authenticated/${user}/${apiKey}`)
+    // Send user & apiKey
+    res.json({
+      user,
+      apiKey
+    })
   } 
 });
 
 // Send App 
-app.get('/', function(req, res){
+app.get('/*', function(req, res){
   sendApp(res) 
 });
 
-app.get('/welcome', function(req,res){
-  sendApp(res)
-});
-
-app.get(`/authenticated/*/*`, function(req,res){
-  sendApp(res)
-});
-
-
-// Api Requests 
-app.get('/data', function(req,res){
-  if (req.query.apiKey === apiKey) {
+// Api Requests (as post) 
+app.post('/data', function(req,res){
+  if (req.body.apiKey === apiKey) {
     // send JSON response with random string array
     res.json({ 
       results : randomNumStringArray() 

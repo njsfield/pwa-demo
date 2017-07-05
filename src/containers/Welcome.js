@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom'
 // Then redirect
 const Welcome = ({triggerGetResults, credentials, results, offline}) => {
   if (!credentials) {
-    return <Redirect to="/" /> 
+    return <Redirect to="/login" /> 
   } else {
     // Trigger get results action
     setTimeout(() => triggerGetResults(credentials.apiKey), 500);
