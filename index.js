@@ -44,7 +44,7 @@ app.post('/login', function (req, res) {
   // Dummy Check For Now
   if (user && password) {
     // Send apiKey
-    res.redirect(`/authenticated/?user=${user}&apikey=${apiKey}`)
+    res.redirect(`/authenticated/${user}/${apiKey}`)
   } 
 });
 
@@ -57,7 +57,7 @@ app.get('/welcome', function(req,res){
   sendApp(res)
 });
 
-app.get(`/authenticated`, function(req,res){
+app.get(`/authenticated/*/*`, function(req,res){
   sendApp(res)
 });
 
