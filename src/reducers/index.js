@@ -13,11 +13,13 @@ const reducers = combineReducers({
   offline
 }); 
 
-// + LocalStorage
-// + Thunks
+// Enhancers
+// ++ LocalStorage
+// ++ Thunks
 const enhancers = compose(
   persistState(null, {key: 'data'}),
   applyMiddleware(thunk)
 );
 
+// Main Export
 export default createStore(reducers, enhancers) 

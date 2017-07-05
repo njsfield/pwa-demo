@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { getResults } from '../actions/thunks';
 import { Redirect } from 'react-router-dom'
 
-// Simple component to trigger setCredentials action
-// Then redirect
+// Main View
+// If no credentials, redirect to login
+// Otherwise use regular setTimeout to trigger getResults action
+// (setTimeout is always run on re-render)
 const Welcome = ({triggerGetResults, credentials, results, offline}) => {
   if (!credentials) {
     return <Redirect to="/login" /> 
   } else {
-    // Trigger get results action
+    // Trigger getResults 
     setTimeout(() => triggerGetResults(credentials.apiKey), 500);
     return (
       <div>
@@ -28,12 +30,13 @@ const Welcome = ({triggerGetResults, credentials, results, offline}) => {
 // Pass all state 
 const mapStateToProps = state => (state);
 
-// Allow setCredentials action via
-// triggerSetCredentials
+// Pass triggerGetResults as dispatch function
+// For getResults
 const mapDispatchToProps = (dispatch) => ({
   triggerGetResults(apiKey) {
     dispatch(getResults(apiKey));
   }
 });
 
+// Main export
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

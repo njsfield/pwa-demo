@@ -1,4 +1,4 @@
-// setOffline 
+// Offline Toggler
 export const setOffline = (bool) => {
   return {
     type: 'OFFLINE',
@@ -6,7 +6,7 @@ export const setOffline = (bool) => {
   };
 };
 
-// setCredentials
+// Credentials Maker 
 export const setCredentials = ({user, apiKey}) => {
   return {
     type: 'CREDENTIALS',
@@ -14,7 +14,7 @@ export const setCredentials = ({user, apiKey}) => {
   }
 }
 
-// setResults
+// Set Results
 export const setResults = (results) => {
   return {
     type: 'RESULTS',

@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import App from './containers/App.js';
-import serviceWorker from './registerServiceWorker.js'; 
+import serviceWorker from './sw.js'; 
 
 // Main Render
 render(<App />, document.getElementById('app'));
 
-// For Production Only
+// Start Service Worker 
 serviceWorker();
 

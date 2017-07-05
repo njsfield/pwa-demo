@@ -1,7 +1,7 @@
 import { setResults, setCredentials, setOffline } from './index'
 
 export const getResults = (apiKey) => (dispatch) => {
-  // Fire request to get data
+  // Post request to get data
   // If successful, dispatch:
   //   online:true 
   //   setResults:results
@@ -24,7 +24,7 @@ export const getResults = (apiKey) => (dispatch) => {
 }
 
 export const logIn = (details) => (dispatch) => {
-  // Fire request to authenticate 
+  // Post request to authenticate 
   // body:
   //   user:     string
   //   password: string

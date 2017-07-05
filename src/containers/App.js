@@ -6,8 +6,10 @@ import Landing from './Landing';
 import Login from './Login';
 import Welcome from './Welcome';
 
+// Fallback to unknown routes
 const FourOhFour = () => <h1>404</h1>;
 
+// Main Router
 const App = () => (
   <BrowserRouter>
     <Provider store={store}>
@@ -23,4 +25,5 @@ const App = () => (
   </BrowserRouter>
 );
 
+// Main Export
 export default App;
