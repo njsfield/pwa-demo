@@ -9,6 +9,7 @@ class Authenticated extends Component {
   constructor(props) {
     super();
   }
+  // Fire action to set user/apiKey
   componentWillMount() {
     if (!this.props.credentials) {
       this.props.triggerSetCredentials({
@@ -17,6 +18,7 @@ class Authenticated extends Component {
       }); 
     }
   }
+  // Perform redirect
   render() {
     return (
       <Redirect to="/"/> 
@@ -24,9 +26,11 @@ class Authenticated extends Component {
   }
 }
 
-// Give all State
+// Pass credentials 
 const mapStateToProps = state => ({credentials: state.credentials});
 
+// Allow setCredentials action via
+// triggerSetCredentials
 const mapDispatchToProps = (dispatch) => ({
   triggerSetCredentials(credentials) {
     dispatch(setCredentials(credentials));
