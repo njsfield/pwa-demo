@@ -63,8 +63,8 @@ app.get(`/authenticated/*/*`, function(req,res){
 
 
 // Api Requests 
-app.post('/data', function(req,res){
-  if (req.body.apiKey === apiKey) {
+app.get('/data', function(req,res){
+  if (req.query.apiKey === apiKey) {
     // send JSON response with random string array
     res.json({ 
       results : randomNumStringArray() 

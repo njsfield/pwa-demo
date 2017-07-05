@@ -10,13 +10,13 @@ const Welcome = ({triggerGetResults, credentials, results, offline}) => {
     return <Redirect to="/" /> 
   } else {
     // Trigger get results action
-    setTimeout(() => triggerGetResults(), 500);
+    setTimeout(() => triggerGetResults(credentials.apiKey), 500);
     return (
       <div>
         {offline ? <h1>Offline</h1> : <h1>Online</h1>}
         <h1>Welcome. Here are your random number results</h1>
         <ul>
-          {(results || []).map(r => <li>r</li>)}
+          {(results || []).map(r => <li>{r}</li>)}
         </ul>
       </div>
     ) 
@@ -31,8 +31,8 @@ const mapStateToProps = state => (state);
 // Allow setCredentials action via
 // triggerSetCredentials
 const mapDispatchToProps = (dispatch) => ({
-  triggerGetResults() {
-    dispatch(getResults());
+  triggerGetResults(apiKey) {
+    dispatch(getResults(apiKey));
   }
 });
 
