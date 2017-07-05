@@ -5,6 +5,8 @@ using React & Redux.
 
 ## Install
 
+Clone the repo & cd into directory, then;
+
 ```
 yarn install
 ```
