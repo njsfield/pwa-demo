@@ -22,3 +22,11 @@ export const setResults = (results) => {
   }
 }
 
+// Set Historical Results
+export const setHistoricalResults = (results) => {
+  return {
+    type: 'HISTORICAL_RESULTS',
+    results
+  }
+}
+
