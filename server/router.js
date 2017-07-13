@@ -26,7 +26,7 @@ router.post('/login', function(req, res) {
   if (db.authenticate({user,password})) {
     // Define authenticated session
     req.session.authenticated = true;
-    res.send(JSON.stringify({response: "ok"}))
+    res.status(200).json({response: "ok"});
     // req.session.save('hello')
   } else {
     res.status(500).json({response: "not ok"});
@@ -38,20 +38,26 @@ router.post('/data', function(req, res) {
   // Validate Key
   if (req.session.authenticated) {
     // Define authenticated session
-    req.session.authenticated = true;
-    res.json({
+    res.status(200).json({
       results: db.getLatest(),
     });
+  } else {
+    res.status(500).json({response: "not ok"});
   }
 });
 
 // For historical Data requests
 router.post('/historical', function(req, res) {
   // send JSON response with oldest data record (-9 records)
-  res.json({
-    results: db.getOldest(),
-  });
+  if (req.session.authenticated) {
+    res.status(200).json({
+      results: db.getOldest(),
+    });
+  } else {
+    res.status(500).json({response: "not ok"});
+  }
 });
+
 
 // Default export
 module.exports = router;

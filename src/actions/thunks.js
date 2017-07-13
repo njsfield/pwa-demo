@@ -19,6 +19,7 @@ export const getResults = () => dispatch => {
       'Content-Type': 'application/json',
     }),
   })
+    .then(checkStatus)
     .then(res => res.json())
     .then(res => {
       dispatch(setOffline(false));
@@ -38,6 +39,7 @@ export const getHistoricalResults = () => dispatch => {
     credentials: 'include', // important!
     method: 'post',
   })
+    .then(checkStatus)
     .then(res => res.json())
     .then(res => {
       dispatch(setOffline(false));
