@@ -1,6 +1,7 @@
 // Called to set credentials
+// Either true or false
 
-const credentials = (state = null, action) => {
+const credentials = (state = false, action) => {
   switch (action.type) {
     case 'CREDENTIALS':
       return action.credentials;

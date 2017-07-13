@@ -54,7 +54,7 @@ export const logIn = details => dispatch => {
   })
     .then(res => res.json())
     .then(res => {
-      dispatch(setCredentials(res));
+      dispatch(setCredentials(true));
     })
     .catch(e => console.log(e));
 };

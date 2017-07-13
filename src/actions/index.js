@@ -2,15 +2,15 @@
 export const setOffline = (bool) => {
   return {
     type: 'OFFLINE',
-    offline: bool 
+    offline: bool
   };
 };
 
-// Credentials Maker 
-export const setCredentials = ({user, apiKey}) => {
+// Credentials Maker
+export const setCredentials = (bool) => {
   return {
     type: 'CREDENTIALS',
-    credentials: { user, apiKey }
+    credentials: bool
   }
 }
 
@@ -29,4 +29,3 @@ export const setHistoricalResults = (results) => {
     results
   }
 }
-
