@@ -7,6 +7,11 @@ const app = express();
 // Global Key
 const apiKey = '12sdf234';
 
+// Configure port
+// 9000 should be used for development
+const port = process.env.PORT || 9000;
+const host = process.env.HOST || 'http://localhost';
+
 // Data Store
 const dataStore = new Data();
 
@@ -66,4 +71,4 @@ app.post('/historical', function(req, res) {
 
 
 // Dev requests not recognised will be proxied
-app.listen(9000, () => console.log(`Live at http://localhost:9000`));
+app.listen(port, () => console.log(`Live at ${host}:${port}`));
