@@ -1,5 +1,5 @@
 /* Mock Data Store */
-class Data {
+class MockDB {
   // On initialise, generate data with user
   // specified number of records
   // set default to 10
@@ -18,22 +18,24 @@ class Data {
     return Array
       .apply(null, {length: count})
       .map(this.randomNumStringArray)
-  } 
+  }
   // Push new random stringy array
   // Delete first
   updateData() {
     this.data = this.data
-      .concat([this.randomNumStringArray()]) 
+      .concat([this.randomNumStringArray()])
       .slice(1)
   }
   // Get latest
   getLatest() {
-    return this.data[this.data.length - 1] 
+    // (update first)
+    this.updateData();
+    return this.data[this.data.length - 1]
   }
-  // Get oldest 
+  // Get oldest
   getOldest() {
-    return this.data[0] 
+    return this.data[0]
   }
 }
 
-module.exports = Data;
+module.exports = new MockDB();

@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
 const path = require('path');
-const Data = require('./data');
+const staticPath = require('./static-path');
 
 // Global Key
 const apiKey = '12sdf234';
 
 // Data Store
-const data = new Data();
+const db = require('./db');
 
 
 
@@ -19,7 +19,7 @@ const data = new Data();
 // Send App
 router.get('/*', function(req, res) {
   // Send main app
-  res.sendFile(path.join(__dirname, '../build/index.html'));
+  res.sendFile(path.join(staticPath, 'index.html'));
 });
 
 // Post to login
@@ -39,11 +39,9 @@ router.post('/login', function(req, res) {
 router.post('/data', function(req, res) {
   // Validate Key
   if (req.body.apiKey === apiKey) {
-    // Update Data Store
-    data.updateData();
     // send JSON response with latest data
     res.json({
-      results: data.getLatest(),
+      results: db.getLatest(),
     });
   }
 });
@@ -52,7 +50,7 @@ router.post('/data', function(req, res) {
 router.post('/historical', function(req, res) {
   // send JSON response with oldest data record (-9 records)
   res.json({
-    results: data.getOldest(),
+    results: db.getOldest(),
   });
 });
 

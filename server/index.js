@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
 const app = express();
 const router = require('./router');
 
-// Static
-app.use(express.static(path.join(__dirname, '../build')));
+const staticPath = require('./static-path');
 
+// Set static file path
+app.use(express.static(staticPath));
 
 // Body Parsing
 app.use(bodyParser.json()); // for parsing application/json
