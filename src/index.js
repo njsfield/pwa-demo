@@ -8,5 +8,8 @@ render(<App />, document.getElementById('app'));
 
 // Start Service Worker (on production only!)
 if (process.env.NODE_ENV === 'production') {
+  // @TODO:
+  // 1. Eject app
+  // 2. Replace this call with offlinePlugin.install() for AppCache support
   serviceWorker();
 }
