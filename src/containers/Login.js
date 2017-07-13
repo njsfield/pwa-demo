@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { logIn } from '../actions/thunks';
 import { Redirect } from 'react-router-dom'
 
-// Login (stateful) 
-class Login extends Component { 
+// Login (stateful)
+class Login extends Component {
   // Get props
   constructor(props) {
-    super() 
+    super()
   }
   // Internal state
   state = {
-    user: '', 
-    password: '' 
+    user: '',
+    password: ''
   }
   // Form helper
   preventSubmit = (e) => {
@@ -23,8 +23,8 @@ class Login extends Component {
   setUser = (e) => {
     this.setState({user: e.target.value, password: this.state.password});
   };
-  
-  // Set password 
+
+  // Set password
   setPassword = (e) => {
     this.setState({password: e.target.value, user: this.state.user});
   };
@@ -36,27 +36,27 @@ class Login extends Component {
     if (!this.props.credentials) {
       return (
         <form onSubmit={this.preventSubmit}>
-          <label for="user">User</label>
-            <input 
+          <label htmlFor="user">User</label>
+            <input
               onInput={this.setUser}
               type="text"
               name="user"
               value={this.state.user}
-            /> 
-          <label for="password">Passsword</label>
+            />
+          <label htmlFor="password">Passsword</label>
             <input
-              onInput={this.setPassword} 
-              type="password" 
-              name="password" 
+              onInput={this.setPassword}
+              type="password"
+              name="password"
               value={this.state.password}
-            /> 
+            />
           <button type="submit">Log In</button>
         </form>
-      ) 
+      )
     } else {
       // If credentials in global state
       // Redirect to welcome
-      return <Redirect to="/welcome" /> 
+      return <Redirect to="/welcome" />
     }
   }
 }
@@ -74,5 +74,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 // Main Connect
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-

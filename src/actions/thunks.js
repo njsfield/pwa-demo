@@ -7,7 +7,7 @@ export const getResults = apiKey => dispatch => {
   //   setResults:results
   // If unsuccessful, dispatch:
   //   offline:true
-  fetch(`http://localhost:9000/data`, {
+  fetch(`/data`, {
     method: 'post',
     body: JSON.stringify({apiKey}),
     headers: new Headers({
@@ -29,7 +29,7 @@ export const getHistoricalResults = () => dispatch => {
   //   setHistoricalResults:results
   // If unsuccessful, dispatch:
   //   offline:true
-  fetch(`http://localhost:9000/historical`, {
+  fetch(`/historical`, {
     method: 'post',
   })
     .then(res => res.json())
@@ -45,7 +45,7 @@ export const logIn = details => dispatch => {
   // body:
   //   user:     string
   //   password: string
-  fetch(`http://localhost:9000/login`, {
+  fetch(`/login`, {
     method: 'post',
     body: JSON.stringify(details),
     headers: new Headers({

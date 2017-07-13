@@ -35,7 +35,7 @@ const Welcome = ({
         <button onClick={triggerGetHistoricalResults}>Get Historical Data</button>
         <ul>
           {(historicResults || []).map(r =>
-            <li>
+            <li key={r}>
               {r}
             </li>,
           )}

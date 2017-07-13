@@ -22,7 +22,7 @@ const send_ = (res, dir, file) => res.sendFile(path.join(__dirname, dir, file));
 const sendApp = res => send_(res, 'build', 'index.html');
 
 /********
- Requests 
+ Requests
 ********/
 
 // Post to login
@@ -64,4 +64,6 @@ app.post('/historical', function(req, res) {
   });
 });
 
+
+// Dev requests not recognised will be proxied
 app.listen(9000, () => console.log(`Live at http://localhost:9000`));
