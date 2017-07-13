@@ -3,9 +3,6 @@ const router = require('express').Router();
 const path = require('path');
 const staticPath = require('./static-path');
 
-// Global Key
-const apiKey = '12sdf234';
-
 // Data Store
 const db = require('./db');
 
@@ -25,21 +22,23 @@ router.get('/*', function(req, res) {
 // Post to login
 router.post('/login', function(req, res) {
   const {user, password} = req.body;
-  // Dummy Check For Now
-  if (user && password) {
-    // Send user & apiKey
-    res.json({
-      user,
-      apiKey,
-    });
+  // Authenticate username & password
+  if (db.authenticate({user,password})) {
+    // Define authenticated session
+    req.session.authenticated = true;
+    res.send(JSON.stringify({response: "ok"}))
+    // req.session.save('hello')
+  } else {
+    res.status(500).json({response: "not ok"});
   }
 });
 
 // Api Requests (as post)
 router.post('/data', function(req, res) {
   // Validate Key
-  if (req.body.apiKey === apiKey) {
-    // send JSON response with latest data
+  if (req.session.authenticated) {
+    // Define authenticated session
+    req.session.authenticated = true;
     res.json({
       results: db.getLatest(),
     });

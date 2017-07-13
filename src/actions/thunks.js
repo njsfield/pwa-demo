@@ -1,6 +1,11 @@
 import {setResults, setCredentials, setHistoricalResults, setOffline} from './index';
 
-export const getResults = apiKey => dispatch => {
+// Utils
+const checkStatus = (res) =>
+  res.status >= 200 && res.status < 300 ? res : new Error('unauthenticated');
+
+
+export const getResults = () => dispatch => {
   // Post request to get data
   // If successful, dispatch:
   //   online:true
@@ -9,7 +14,7 @@ export const getResults = apiKey => dispatch => {
   //   offline:true
   fetch(`/data`, {
     method: 'post',
-    body: JSON.stringify({apiKey}),
+    credentials: 'include', // important!
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
@@ -30,6 +35,7 @@ export const getHistoricalResults = () => dispatch => {
   // If unsuccessful, dispatch:
   //   offline:true
   fetch(`/historical`, {
+    credentials: 'include', // important!
     method: 'post',
   })
     .then(res => res.json())
@@ -48,13 +54,13 @@ export const logIn = details => dispatch => {
   fetch(`/login`, {
     method: 'post',
     body: JSON.stringify(details),
+    credentials: 'include', // important!
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
   })
     .then(res => res.json())
-    .then(res => {
-      dispatch(setCredentials(true));
-    })
+    .then(checkStatus)
+    .then(() => dispatch(setCredentials(true)))
     .catch(e => console.log(e));
 };

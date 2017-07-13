@@ -19,7 +19,7 @@ const Welcome = ({
     return <Redirect to="/login" />;
   } else {
     // Trigger getResults
-    setTimeout(() => triggerGetResults(credentials.apiKey), 500);
+    setTimeout(() => triggerGetResults(), 500);
     return (
       <div>
         {offline ? <h1>Offline</h1> : <h1>Online</h1>}

@@ -36,6 +36,10 @@ class MockDB {
   getOldest() {
     return this.data[0]
   }
+  // Dummy authentication
+  authenticate({user, password}){
+    return user && password;
+  }
 }
 
 module.exports = new MockDB();
