@@ -5,6 +5,7 @@ import Nav from 'containers/Nav';
 import Wrapper from 'components/Wrapper';
 
 // Main App
+// Used as app layout file
 const App = (props) => (
   <Wrapper>
     <Nav />

@@ -11,7 +11,7 @@ export const getResults = () => dispatch => {
   //   setResults:results
   // If unsuccessful, dispatch:
   //   offline:true
-  fetch(`/data`, {
+  return fetch(`/data`, {
     method: 'post',
     credentials: 'include', // important!
     headers: new Headers({
@@ -34,7 +34,7 @@ export const getHistoricalResults = () => dispatch => {
   //   setHistoricalResults:results
   // If unsuccessful, dispatch:
   //   offline:true
-  fetch(`/historical`, {
+  return fetch(`/historical`, {
     credentials: 'include', // important!
     method: 'post',
   })

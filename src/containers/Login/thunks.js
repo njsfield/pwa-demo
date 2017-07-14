@@ -10,7 +10,7 @@ export const logIn = () => (dispatch, getState) => {
   // body:
   //   user:     string
   //   password: string
-  fetch(`/login`, {
+  return fetch(`/login`, {
     method: 'post',
     body: JSON.stringify({username, password}),
     credentials: 'include', // important!

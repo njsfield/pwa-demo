@@ -10,7 +10,9 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "react-scripts": "1.0.10"
+    "jest-fetch-mock": "^1.2.0",
+    "react-scripts": "1.0.10",
+    "redux-mock-store": "^1.2.3"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -31,7 +33,7 @@
     "live:dev": "concurrently \"npm run server\" \"npm run start\"",
     "live:prod": "concurrently \"npm run server\" \"npm run build\"",
     "build": "NODE_PATH=src/ react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "NODE_PATH=src/ react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:9000/"
