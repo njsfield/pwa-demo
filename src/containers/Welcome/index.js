@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getResults,getHistoricalResults} from '../actions/thunks';
+import {getResults,getHistoricalResults} from 'actions/thunks';
 import {Redirect} from 'react-router-dom';
 
 // Main View

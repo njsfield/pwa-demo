@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../actions/thunks';
+import { logIn } from 'actions/thunks';
 import { Redirect } from 'react-router-dom'
 
 // Login (stateful)
