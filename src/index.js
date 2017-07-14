@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './containers/App.js';
+import App from './containers/App';
 import serviceWorker from './sw.js';
 
 // Main Render
