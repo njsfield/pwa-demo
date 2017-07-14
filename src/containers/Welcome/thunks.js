@@ -1,8 +1,7 @@
-import {setResults, setCredentials, setHistoricalResults, setOffline} from './index';
+import {setResults, setHistoricalResults} from './actions';
+import {setOffline} from 'containers/App/actions';
 
-// Utils
-const checkStatus = (res) =>
-  res.status >= 200 && res.status < 300 ? res : new Error('unauthenticated');
+import { checkStatus } from 'utils/request';
 
 
 export const getResults = () => dispatch => {
@@ -46,23 +45,4 @@ export const getHistoricalResults = () => dispatch => {
       dispatch(setHistoricalResults(res.results));
     })
     .catch(() => dispatch(setOffline(true)));
-};
-
-export const logIn = details => dispatch => {
-  // Post request to authenticate
-  // body:
-  //   user:     string
-  //   password: string
-  fetch(`/login`, {
-    method: 'post',
-    body: JSON.stringify(details),
-    credentials: 'include', // important!
-    headers: new Headers({
-      'Content-Type': 'application/json',
-    }),
-  })
-    .then(res => res.json())
-    .then(checkStatus)
-    .then(() => dispatch(setCredentials(true)))
-    .catch(e => console.log(e));
 };

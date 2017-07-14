@@ -14,8 +14,12 @@ const Landing = ({credentials, results, offline}) => {
   );
 }
 
-// Pass all global state
-const mapStateToProps = state => (state);
+// Pass credentials, results & offline
+const mapStateToProps = state => ({
+  credentials: state.global.credentials,
+  results: state.welcome.results,
+  offline: state.global.offline,
+});
 
 // Main export
 export default connect(mapStateToProps)(Landing);

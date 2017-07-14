@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import { setCredentials } from 'actions/index.js';
+import { setCredentials } from 'containers/App/actions';
 
 // Nav Bar
 // Display 'logout' link if logged in
@@ -18,7 +18,9 @@ const NavBar = ({credentials, triggerSetCredentials}) => {
   }
 
 // Pass all global state
-const mapStateToProps = state => ({credentials: state.credentials});
+const mapStateToProps = state => ({
+  credentials: state.global.credentials
+});
 
 // Pass triggerSetCredentials (with false on call)
 const mapDispatchToProps = dispatch => ({

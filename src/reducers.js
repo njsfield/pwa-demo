@@ -2,27 +2,22 @@ import {combineReducers} from 'redux';
 import {createStore, compose, applyMiddleware} from 'redux';
 import persistState from 'redux-localstorage';
 import thunk from 'redux-thunk';
-import credentials from './credentials';
-import results from './results';
-import historicResults from './historicResults';
-import offline from './offline';
+import global from './containers/App/reducer';
+import login from './containers/Login/reducer';
+import welcome from './containers/Welcome/reducer';
 
-// First combine
+// Combine global, login & welcome reducers
 const reducers = combineReducers({
-  credentials,
-  results,
-  historicResults,
-  offline,
+  global,
+  login,
+  welcome,
 });
 
 // Enhancers
 // ++ LocalStorage
 // ++ Thunks
 const enhancers = compose(
-  // Dont persist historic results!
-  persistState(['credentials', 'results', 'offline'], {
-    key: 'data',
-  }),
+  persistState(),
   applyMiddleware(thunk),
 );
 

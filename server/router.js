@@ -21,9 +21,9 @@ router.get('/*', function(req, res) {
 
 // Post to login
 router.post('/login', function(req, res) {
-  const {user, password} = req.body;
+  const {username, password} = req.body;
   // Authenticate username & password
-  if (db.authenticate({user,password})) {
+  if (db.authenticate({username,password})) {
     // Define authenticated session
     req.session.authenticated = true;
     res.status(200).json({response: "ok"});

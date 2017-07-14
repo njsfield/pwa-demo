@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import App from 'containers/App';
+import App from './containers/App';
 import serviceWorker from './sw.js';
-import Landing from 'containers/Landing';
-import Login from 'containers/Login';
-import Welcome from 'containers/Welcome';
-import store from 'reducers';
+import Landing from './containers/Landing';
+import Login from './containers/Login';
+import Welcome from './containers/Welcome';
+import store from './reducers';
 
 
 const FourOhFour = () => <h1>404</h1>;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getResults,getHistoricalResults} from 'actions/thunks';
+import {getResults,getHistoricalResults} from 'containers/Welcome/thunks';
 import {Redirect} from 'react-router-dom';
 
 // Main View
@@ -46,13 +46,19 @@ const Welcome = ({
 };
 
 // Pass all state
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+  credentials: state.global.credentials,
+  offline: state.global.offline,
+  results: state.welcome.results,
+  historicResults: state.welcome.historicResults,
+});
+
 
 // Pass triggerGetResults as dispatch function
 // For getResults
 const mapDispatchToProps = dispatch => ({
-  triggerGetResults(apiKey) {
-    dispatch(getResults(apiKey));
+  triggerGetResults() {
+    dispatch(getResults());
   },
   triggerGetHistoricalResults() {
     dispatch(getHistoricalResults());
