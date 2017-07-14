@@ -26,11 +26,11 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_PATH=src/ react-scripts start",
     "server": "nodemon index.js",
-    "live:dev": "concurrently \"npm run server\" \"NODE_PATH=src/ npm run start\"",
-    "live:prod": "concurrently \"npm run server\" \" NODE_PATH=src/ npm run build\"",
-    "build": "react-scripts build",
+    "live:dev": "concurrently \"npm run server\" \"npm run start\"",
+    "live:prod": "concurrently \"npm run server\" \"npm run build\"",
+    "build": "NODE_PATH=src/ react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
