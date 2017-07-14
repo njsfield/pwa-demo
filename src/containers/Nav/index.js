@@ -1,7 +1,7 @@
 import React  from 'react';
 import { connect } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import { setCredentials } from '../../actions/index.js';
+import { setCredentials } from 'actions/index.js';
 
 // Nav Bar
 // Display 'logout' link if logged in
