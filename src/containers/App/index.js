@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './NavBar';
 import { Provider } from 'react-redux';
-import store from '../../reducers';
-import Landing from '../Landing';
-import Login from '../Login';
-import Welcome from '../Welcome';
+import store from 'reducers';
+import Landing from 'containers/Landing';
+import Login from 'containers/Login';
+import Welcome from 'containers/Welcome';
 
 // Fallback to unknown routes
 const FourOhFour = () => <h1>404</h1>;

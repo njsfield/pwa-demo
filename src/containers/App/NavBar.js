@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { setCredentials } from '../../actions/index.js';
 
 // Nav Bar
+// Display 'logout' link if logged in
 const NavBar = ({credentials, triggerSetCredentials}) => {
     return (
       <nav className="nav">
