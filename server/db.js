@@ -37,8 +37,8 @@ class MockDB {
     return this.data[0]
   }
   // Dummy authentication
-  authenticate({user, password}){
-    return user && password;
+  authenticate({username, password}){
+    return username && password;
   }
 }
 

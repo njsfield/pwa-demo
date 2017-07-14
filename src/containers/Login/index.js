@@ -1,54 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { logIn } from '../actions/thunks';
+import { logIn } from './thunks';
+import { setUsername, setPassword } from './actions';
 import { Redirect } from 'react-router-dom'
 
 // Login (stateful)
 class Login extends Component {
-  // Get props
+
   constructor(props) {
     super()
   }
-  // Internal state
-  state = {
-    user: '',
-    password: ''
-  }
-  // Form helper
+
   preventSubmit = (e) => {
     e.preventDefault();
-    this.props.triggerLogIn(this.state);
-  };
-  // Set User
-  setUser = (e) => {
-    this.setState({user: e.target.value, password: this.state.password});
-  };
+    this.props.triggerLogIn();
+  }
 
-  // Set password
-  setPassword = (e) => {
-    this.setState({password: e.target.value, user: this.state.user});
-  };
-
-  // Main render
-  render() {
-    // If no credentials:
-    // Serve form
+  render(){
+    // If no credentials, serve form
     if (!this.props.credentials) {
       return (
         <form onSubmit={this.preventSubmit}>
           <label htmlFor="user">User</label>
             <input
-              onInput={this.setUser}
+              onChange={this.props.triggerSetUsername}
               type="text"
               name="user"
-              value={this.state.user}
+              value={this.props.username}
             />
           <label htmlFor="password">Passsword</label>
             <input
-              onInput={this.setPassword}
+              onChange={this.props.triggerSetPassword}
               type="password"
               name="password"
-              value={this.state.password}
+              value={this.props.password}
             />
           <button type="submit">Log In</button>
         </form>
@@ -63,12 +48,22 @@ class Login extends Component {
 
 
 // Pass credentials to component
-const mapStateToProps = state => ({credentials: state.credentials});
+const mapStateToProps = state => ({
+  credentials: state.global.credentials,
+  username: state.login.username,
+  password: state.login.password,
+});
 
 // Pass triggerLogIn to dispatch logIn action
 const mapDispatchToProps = (dispatch) => ({
-  triggerLogIn(details) {
-    dispatch(logIn(details));
+  triggerLogIn() {
+    dispatch(logIn());
+  },
+  triggerSetUsername(e) {
+    dispatch(setUsername(e.target.value));
+  },
+  triggerSetPassword(e) {
+    dispatch(setPassword(e.target.value));
   }
 });
 
