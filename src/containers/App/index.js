@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AppHeader from './AppHeader';
+import AppFooter from './AppFooter';
 import NavBar from './NavBar';
+import Wrapper from 'components/Wrapper';
 import { Provider } from 'react-redux';
 import store from 'reducers';
 import Landing from 'containers/Landing';
@@ -14,15 +17,17 @@ const FourOhFour = () => <h1>404</h1>;
 const App = () => (
   <BrowserRouter>
     <Provider store={store}>
-      <div className="app">
+      <Wrapper>
         <NavBar />
+        <AppHeader />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route path="/login" component={Login} />
           <Route path="/welcome" component={Welcome} />
           <Route component={FourOhFour} />
         </Switch>
-      </div>
+        <AppFooter />
+      </Wrapper>
     </Provider>
   </BrowserRouter>
 );
