@@ -1,7 +1,7 @@
 import configureMockStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import { getResults } from "containers/Welcome/thunks";
+import { getResults, getHistoricalResults } from "containers/Welcome/thunks";
 
 const mockStore = configureMockStore([thunk]);
 
@@ -41,6 +41,42 @@ describe("Welcome thunk tests", () => {
     fetch.mockReject();
 
     return store.dispatch(getResults()).then(() => {
+      const actualActions = store.getActions();
+      expect(actualActions).toEqual(expectedActions);
+    });
+  });
+  it("should set historical results via response from server", () => {
+    // Configure empty mock store
+    const store = mockStore({});
+    const mockHistoricalResults = ["123", "234", "345", "456"];
+    const expectedActions = [
+      { offline: false, type: "SET_OFFLINE" },
+      {
+        type: "SET_HISTORICAL_RESULTS",
+        results: mockHistoricalResults
+      }
+    ];
+    // Triggered on all requests
+    fetch.mockResponse(JSON.stringify({ results: mockHistoricalResults }));
+
+    return store.dispatch(getHistoricalResults()).then(() => {
+      const actualActions = store.getActions();
+      expect(actualActions).toEqual(expectedActions);
+    });
+  });
+
+  it("should set offline to true if 500 status from server", () => {
+    const store = mockStore({});
+    const expectedActions = [
+      {
+        offline: true,
+        type: "SET_OFFLINE"
+      }
+    ];
+    // (Reject) triggered on all requests
+    fetch.mockReject();
+
+    return store.dispatch(getHistoricalResults()).then(() => {
       const actualActions = store.getActions();
       expect(actualActions).toEqual(expectedActions);
     });
